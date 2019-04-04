@@ -21,6 +21,7 @@
     tower_password: r3dh4t1!
     ssh_key_data: "/root/.ssh/openstack.pem"
     username: cloud-user
+    tower_verify_ssl: "false"
 
 - name: Create Inventory
   command: |
