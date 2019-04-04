@@ -29,6 +29,13 @@
   loop: "{{instance_info}}"
   register: instancefloatingip
 
+# - name: start stopped
+#   os_server_actions:
+#     action: start
+#     auth:
+#     server:  "{{ item.instance_name }}"
+#     timeout: "200"
+#   loop: "{{instance_info}}"
 
 - name: Show "{{ item.floating_ip }}" public IP
   debug: 
@@ -40,5 +47,5 @@
   wait_for:
     host: "{{ item.floating_ip.floating_ip_address }}"
     port: 22
-    timeout: 60
+    timeout: 600
   loop: "{{ instancefloatingip.results }}"

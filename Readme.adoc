@@ -51,3 +51,26 @@
 | roles/config-tower/tasks/workflow_template.yml | genrate workflow from `workflow.yml` file
 | roles/config-tower/tasks/post-config-tower.yml | any post config jobs
 |===
+
+sh_exchange_identification: Connection closed by remote host
+[root@workstation-1716 ~]# ssh
+ssh          ssh-add      ssh-agent    ssh-copy-id  sshd         sshd-keygen  ssh-keygen   ssh-keyscan  sshpass      
+[root@workstation-1716 ~]# ssh
+ssh          ssh-add      ssh-agent    ssh-copy-id  sshd         sshd-keygen  ssh-keygen   ssh-keyscan  sshpass      
+[root@workstation-1716 ~]# ssh ctrl.example.con
+ssh_exchange_identification: Connection closed by remote host
+[root@workstation-1716 ~]# ssh ctrl.example.com
+Last login: Wed Mar 20 22:52:06 2019 from workstation-repl.rhpds.opentlc.com
+[root@ctrl ~]# source keystonerc_admin 
+[root@ctrl ~(keystone_admin)]# openstack server list
++--------------------------------------+----------+---------+--------------------------------------+------------+
+| ID                                   | Name     | Status  | Networks                             | Image Name |
++--------------------------------------+----------+---------+--------------------------------------+------------+
+| dc2fa188-e159-4fc2-a791-b88e95745898 | frontend | SHUTOFF | int_network=20.20.20.11, 10.10.10.6  | rhel-guest |
+| bcd9339d-c7df-4147-b7e8-8c66d7bb90c5 | db       | SHUTOFF | int_network=20.20.20.4, 10.10.10.4   | rhel-guest |
+| 33d8d48a-057d-40ee-8f2b-da63f97fbc17 | app2     | SHUTOFF | int_network=20.20.20.5, 10.10.10.12  | rhel-guest |
+| a0a2d4df-c6f3-483c-9ea2-20ffdb7ba969 | app1     | SHUTOFF | int_network=20.20.20.10, 10.10.10.10 | rhel-guest |
++--------------------------------------+----------+---------+--------------------------------------+------------+
+[root@ctrl ~(keystone_admin)]# openstack server start frontend db app1 app2
+[root@ctrl ~(keystone_admin)]# 
+
