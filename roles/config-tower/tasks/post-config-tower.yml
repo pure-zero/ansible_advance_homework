@@ -10,7 +10,7 @@
     scm_update_on_launch: "true"
     tower_verify_ssl: "false"
 
-- name: Machine Credentail to connect to workstation using openstack.pub
+- name: Machine Credential to connect to workstation using openstack.pub
   tower_credential:
     name: "{{ssh_cred_name}}"
     organization: Default
@@ -19,9 +19,9 @@
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
     tower_username: admin
     tower_password: r3dh4t1!
-    ssh_key_data: "~/.ssh/openstack.pem"
+    ssh_key_data: "~/.ssh/openstack.pub"
     username: cloud-user
-    tower_verify_ssl: "false"
+    tower_verify_ssl: no
 
 - name: Create Inventory
   command: |
