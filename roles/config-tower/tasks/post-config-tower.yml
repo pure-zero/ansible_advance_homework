@@ -7,8 +7,8 @@
     tower_config_file: "~/tower_cli.cfg"
     scm_type: "git"
     scm_branch: "{{scm_branch}}"
-    scm-url: "{{scm_url}}"
-    scm-update-on-launch: true
+    scm_url: "{{scm_url}}"
+    scm_update_on_launch: "true"
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
