@@ -6,7 +6,7 @@
     meta: "{{ item.meta }}"
     flavor: m2.small
     security_groups: "{{ item.security_group_name }}"
-    key_name: openstack.pem
+    key_name: ansible_ssh
     nics: net-name=int_network
     userdata: |
       #!/bin/bash
@@ -30,17 +30,16 @@
   register: instancefloatingip
 
 
-- name: OpenStack servers
-  os_server_facts:
-    cloud: ospcloud
-  register: result
+- name: Show "{{ item.floating_ip }}" public IP
+  debug: 
+    var: item.floating_ip.floating_ip_address
+  with_items: "{{ instancefloatingip.results }}"
 
-- name: Wait for server to be available
+
+- name: Wait for "{{ item.floating_ip }}" to be available
   wait_for:
-    host: "{{ item.public_v4 }}"
+    host: "{{ item.floating_ip.floating_ip_address }}"
     port: 22
     search_regex: OpenSSH
     timeout: 60
-  delegate_to: "{{ inventory_hostname }}"
-  with_items: 
-    - "{{ result.ansible_facts.openstack_servers }}"
+  with_items: "{{ instancefloatingip.results }}"

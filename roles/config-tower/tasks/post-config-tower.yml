@@ -10,6 +10,12 @@
     scm_update_on_launch: "true"
     tower_verify_ssl: "false"
 
+- name: remove anisble comments
+  lineinfile:
+    dest: ~/.ssh/openstack.pem
+    state: absent
+    regexp: "ANSIBLE MANAGED BLOCK"
+
 - name: Machine Credential to connect to workstation using openstack.pub
   tower_credential:
     name: "{{ssh_cred_name}}"
