@@ -30,17 +30,17 @@
   register: instancefloatingip
 
 
-- name: Show "{{ item.floating_ip }}" public IP
-  debug: 
-    var: item.floating_ip.floating_ip_address
-  with_items: "{{ instancefloatingip.results }}"
+- name: OpenStack servers
+  os_server_facts:
+    cloud: ospcloud
+  register: result
 
-
-
-- name:  Wait for server to be available
+- name: Wait for server to be available
   wait_for:
-    host: "{{ item.floating_ip.floating_ip_address }}"
+    host: "{{ item.public_v4 }}"
     port: 22
     search_regex: OpenSSH
     timeout: 600
-  with_items: "{{ instancefloatingip.results }}"
+  delegate_to: "{{ inventory_hostname }}"
+  with_items: 
+    - "{{ result.ansible_facts.openstack_servers }}"
