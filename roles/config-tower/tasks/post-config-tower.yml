@@ -1,5 +1,14 @@
 - name: Create Homework Assignment project 
 # Use tower module or tower-cli to create Ansible Tower project. Name of the project is specifed in ./vars/main.yml
+  tower_project:
+    name: "{{proj_name}}"
+    organization: "{{org_name}}"
+    state: present
+    tower_config_file: "~/tower_cli.cfg"
+    scm_type: "git"
+    scm_branch: "{{scm_branch}}"
+    scm-url: "{{scm_url}}"
+    scm-update-on-launch: true
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
