@@ -12,7 +12,7 @@
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
-    name: Connect_to_workstation
+    name: "{{ssh_cred_name}}"
     organization: Default
     state: present
     kind: ssh
