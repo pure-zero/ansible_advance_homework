@@ -12,7 +12,7 @@
 
 - name: Create credential to connect to workstation
   command: |
-    tower-cli credential create --name "{{ssh_cred_name}}" --organization "{{org_name}}" --credential-type Machine --inputs=@/root/workstation_creds.json
+    tower-cli credential create --name "{{ssh_cred_name}}" --organization "{{org_name}}" --credential-type Machine --inputs=@{{user_cred_path}}
 
 - name: Create Inventory
   command: |
