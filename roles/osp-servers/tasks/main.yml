@@ -39,7 +39,7 @@
 
 - name:  Wait for server to be available
   wait_for:
-    host: "{{ item.item.floating_ip.floating_ip_address }}"
+    host: "{{ item.floating_ip.floating_ip_address }}"
     port: 22
     search_regex: OpenSSH
     timeout: 600
