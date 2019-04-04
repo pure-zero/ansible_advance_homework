@@ -22,8 +22,8 @@
 
 - name: Download Credential file 
   copy:
-    src: "{{/root/.ssh/openstack.pem}}"
-    dest: "{{~/.ssh/openstack.pem}}"
+    src: "{{user_cred_path}}"
+    dest: "~/.ssh/openstack.pem"
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
