@@ -8,7 +8,7 @@
     scm_branch: "{{scm_branch}}"
     scm_url: "{{scm_url}}"
     scm_update_on_launch: "true"
-    tower_verify_ssl: false
+    tower_verify_ssl: "no"
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
