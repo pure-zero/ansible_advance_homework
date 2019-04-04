@@ -40,6 +40,5 @@
   wait_for:
     host: "{{ item.floating_ip.floating_ip_address }}"
     port: 22
-    search_regex: OpenSSH
     timeout: 60
-  with_items: "{{ instancefloatingip.results }}"
+  loop: "{{ instancefloatingip.results }}"
