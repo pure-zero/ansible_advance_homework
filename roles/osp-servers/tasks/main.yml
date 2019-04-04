@@ -6,7 +6,7 @@
     meta: "{{ item.meta }}"
     flavor: m2.small
     security_groups: "{{ item.security_group_name }}"
-    key_name: openstack.pem
+    key_name: ansible_ssh
     nics: net-name=int_network
     userdata: |
       #!/bin/bash
