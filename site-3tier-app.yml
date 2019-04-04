@@ -31,3 +31,11 @@
   roles:
     - {name: base-config, tags: base-config}
     - {name: db-tier, tags: [dbs, postgres]}
+
+- name: deploy apache
+  become: true
+  hosts: apps
+  tasks:
+  - name: deploy apache
+    include_role:
+      name: apache

@@ -1,2 +1,28 @@
 ---
 # tasks file for db-tier
+- name: install postgres
+  yum:
+    name: postgresql-server
+    state: latest
+  notify: 
+    - start postgres
+    - enable postgres
+
+- name: stat data folder
+  stat:
+    path: /var/lib/pgsql/data/PG_VERSION
+  register: dataDir
+
+- name: initilize postgres
+  command: postgresql-setup initdb
+  when: dataDir.stat.exists == False
+  notify: 
+    - start postgres
+    - enable postgres
+
+- name: initilize postgres some more
+  command: chkconfig postgresql on
+  when: dataDir.stat.exists == False
+  notify: 
+    - start postgres
+    - enable postgres

@@ -1,2 +1,35 @@
 ---
 # tasks file for app-tier
+- name: install tomcat
+  package:
+    name: tomcat
+    state: latest
+  notify:
+    - start tomcat
+    - enable tomcat
+
+- name: enable tomcat at boot
+  service:
+    name: tomcat
+    enabled: yes
+
+- name: create ansible tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: ../templates/index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+
+- name: make directory
+  file:
+    path: /usr/share/tomcat/webapps/ansible
+    state: directory
+
+- name: send app html to tomcat
+  template:
+    src: ../templates/index.html.app.j2
+    dest: /usr/share/tomcat/webapps/ansible/index.html
