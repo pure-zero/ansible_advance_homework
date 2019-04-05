@@ -1,7 +1,7 @@
 ---
 # handlers file for db-tier
 - name: start postgres
-  service: name=postgresql state=restared
+  service: name=postgresql state=restarted
 
 - name: enable postgres
   service: name=postgresql enabled=True
