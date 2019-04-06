@@ -5,7 +5,7 @@
     uri:
       url: "http://{{ item.public_v4 }}"
       return_content: yes
-    loop: "{{ openstack_info.ansible_facts.openstack_servers }}"
+    loop: "{{ inventory_hostname }}"
     register: webpage
     failed_when: "'Ansible has done its job' not in webpage.content"
     retries: 30
