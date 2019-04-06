@@ -3,7 +3,7 @@
   tasks:
   - name: Use Uri module for wrting smoke test.
     uri:
-      url: "http://{{ item.public_v4 }}"
+      url: "http://{{ item }}"
       return_content: yes
     with_items:
       - "{{ inventory_hostname }}"
