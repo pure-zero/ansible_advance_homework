@@ -32,7 +32,6 @@
 - name: start stopped
   os_server_actions:
     action: start
-    auth:
     server:  "{{ item.instance_name }}"
     timeout: "200"
   loop: "{{instance_info}}"
