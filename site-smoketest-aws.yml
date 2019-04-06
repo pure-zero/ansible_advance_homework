@@ -5,7 +5,8 @@
     uri:
       url: "http://{{ item.public_v4 }}"
       return_content: yes
-    loop: "{{ inventory_hostname }}"
+    with_items:
+      - "{{ inventory_hostname }}"
     register: webpage
     failed_when: "'Ansible has done its job' not in webpage.content"
     retries: 30
