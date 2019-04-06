@@ -29,13 +29,13 @@
   loop: "{{instance_info}}"
   register: instancefloatingip
 
-# - name: start stopped
-#   os_server_actions:
-#     action: start
-#     auth:
-#     server:  "{{ item.instance_name }}"
-#     timeout: "200"
-#   loop: "{{instance_info}}"
+- name: start stopped
+  os_server_actions:
+    action: start
+    auth:
+    server:  "{{ item.instance_name }}"
+    timeout: "200"
+  loop: "{{instance_info}}"
 
 - name: Show "{{ item.floating_ip }}" public IP
   debug: 
